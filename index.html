@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Avto-Bozor 24 | Ultimate</title>
+    <link rel="stylesheet" href="style.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600;700;800;900&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+    <!-- ===== PARTICLES BG ===== -->
+    <canvas id="bgCanvas"></canvas>
+
+    <!-- ===== SUN OVERLAY ===== -->
+    <div class="sun-overlay" id="sunOverlay">
+        <div class="sun-core"></div>
+        <div class="sun-glow"></div>
+        <div class="sun-rays"></div>
+        <div class="sun-text">☀️ QUYOSH REJIMI</div>
+    </div>
+
+    <!-- ===== SIMULATION OVERLAY ===== -->
+    <div class="sim-overlay" id="simOverlay">
+        <div class="sim-content">
+            <div class="sim-spinner"></div>
+            <h2>🚀 SIMULYATSIYA</h2>
+            <p>Ma'lumotlar yangilanmoqda...</p>
+            <div class="sim-track">
+                <div class="sim-fill" id="simFill"></div>
+            </div>
+            <span class="sim-pct" id="simPct">0%</span>
+        </div>
+    </div>
+
+    <!-- ===== FIREWORKS CANVAS ===== -->
+    <canvas id="fireworksCanvas"></canvas>
+
+    <!-- ===== GLOW CURSOR ===== -->
+    <div class="glow-cursor" id="glowCursor"></div>
+
+    <!-- ===== NAVBAR ===== -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span class="logo-3d">🚗</span>
+                <span class="logo-text">Avto<span>Bozor</span>24</span>
+            </div>
+            <div class="nav-links">
+                <a href="#home" class="active">Bosh</a>
+                <a href="#strategy">Strategiya</a>
+                <a href="#finance">Moliyaviy</a>
+                <a href="#cars">Mashinalar</a>
+                <a href="#goals">Maqsad</a>
+            </div>
+            <div class="nav-actions">
+                <button class="sun-btn" onclick="toggleSun()">
+                    <span id="sunIcon">🌙</span>
+                </button>
+                <button class="sim-btn" onclick="startSim()">⚡ Simulyatsiya</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ===== HERO ===== -->
+    <section class="hero" id="home">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span class="badge-dot"></span>
+                1-4-6-8 STRATEGIYASI
+            </div>
+            <h1 class="hero-title">
+                Avtomobil<br />
+                <span class="gradient-text">savdosining</span><br />
+                <span class="glitch" data-text="YANGI DAVRI">YANGI DAVRI</span>
+            </h1>
+            <p class="hero-desc">
+                Yangi va 3 yoshgacha avtomobillar. Onlayn + ofis.<br />
+                12 oy → 30 ta/oy → $15,000 foyda.
+            </p>
+            <div class="hero-stats">
+                <div class="hero-stat">
+                    <span class="stat-num" id="hs1">$50K</span>
+                    <span class="stat-lbl">Sarmoya</span>
+                </div>
+                <div class="hero-stat">
+                    <span class="stat-num" id="hs2">30</span>
+                    <span class="stat-lbl">Mashina/oy</span>
+                </div>
+                <div class="hero-stat">
+                    <span class="stat-num" id="hs3">$15K</span>
+                    <span class="stat-lbl">Sof foyda</span>
+                </div>
+            </div>
+            <div class="hero-actions">
+                <button class="btn-primary" onclick="showCars()">🚀 Boshlash</button>
+                <button class="btn-ghost" onclick="scrollToSection('strategy')">Strategiya ↓</button>
+            </div>
+        </div>
+        <div class="hero-3d">
+            <div class="car-3d c1">🏎️</div>
+            <div class="car-3d c2">🚗</div>
+            <div class="car-3d c3">🚙</div>
+            <div class="car-3d c4">🏁</div>
+        </div>
+    </section>
+
+    <!-- ===== CARS SECTION ===== -->
+    <section class="cars-section" id="cars">
+        <div class="section-header">
+            <span class="section-tag">🚗 MASHINALAR</span>
+            <h2>Avtomobillar <span class="gradient-text">katalogi</span></h2>
+        </div>
+        <div class="cars-grid" id="carsGrid">
+            <!-- Cars will be rendered by JS -->
+        </div>
+    </section>
+
+    <!-- ===== KPI ===== -->
+    <section class="kpi-section" id="kpi">
+        <div class="section-header">
+            <span class="section-tag">📊 METRIKALAR</span>
+            <h2>Asosiy <span class="gradient-text">ko'rsatkichlar</span></h2>
+        </div>
+        <div class="kpi-grid">
+            <div class="kpi-card" data-delay="0">
+                <div class="kpi-icon">⏱️</div>
+                <div class="kpi-num" data-target="1">0</div>
+                <div class="kpi-lbl">Boshlash</div>
+                <div class="kpi-sub">1 oy</div>
+            </div>
+            <div class="kpi-card" data-delay="100">
+                <div class="kpi-icon">🚘</div>
+                <div class="kpi-num" data-target="4">0</div>
+                <div class="kpi-lbl">Zaxira</div>
+                <div class="kpi-sub">4 ta mashina</div>
+            </div>
+            <div class="kpi-card" data-delay="200">
+                <div class="kpi-icon">⏳</div>
+                <div class="kpi-num" data-target="6">0</div>
+                <div class="kpi-lbl">Oqlash</div>
+                <div class="kpi-sub">6 oy</div>
+            </div>
+            <div class="kpi-card" data-delay="300">
+                <div class="kpi-icon">🎯</div>
+                <div class="kpi-num" data-target="8">0</div>
+                <div class="kpi-lbl">6-oy foyda</div>
+                <div class="kpi-sub">$8K → $15K</div>
+            </div>
+            <div class="kpi-card" data-delay="400">
+                <div class="kpi-icon">💰</div>
+                <div class="kpi-num" data-target="50">0</div>
+                <div class="kpi-lbl">Sarmoya</div>
+                <div class="kpi-sub">$35K–$50K</div>
+            </div>
+            <div class="kpi-card" data-delay="500">
+                <div class="kpi-icon">🏆</div>
+                <div class="kpi-num" data-target="30">0</div>
+                <div class="kpi-lbl">12-oy</div>
+                <div class="kpi-sub">30 mashina/oy</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== STRATEGY ===== -->
+    <section class="strategy-section" id="strategy">
+        <div class="section-header">
+            <span class="section-tag">🧠 STRATEGIYA</span>
+            <h2>1-4-6-8 <span class="gradient-text">Yo'l xaritasi</span></h2>
+        </div>
+        <div class="strategy-grid">
+            <div class="strategy-card">
+                <div class="sc-num">01</div>
+                <div class="sc-icon">📅</div>
+                <h3>1 oy</h3>
+                <p>Ro'yxatdan o'tish, ofis, Telegram-bot, Instagram</p>
+                <div class="sc-tags"><span>MChJ</span><span>Ofis</span><span>Bot</span></div>
+                <div class="sc-glow"></div>
+            </div>
+            <div class="strategy-card">
+                <div class="sc-num">02</div>
+                <div class="sc-icon">🚗</div>
+                <h3>4 ta mashina</h3>
+                <p>Byudjet + O'rta + Premium kombinatsiyasi</p>
+                <div class="sc-tags"><span>Byudjet</span><span>O'rta</span><span>Premium</span></div>
+                <div class="sc-glow"></div>
+            </div>
+            <div class="strategy-card">
+                <div class="sc-num">03</div>
+                <div class="sc-icon">📈</div>
+                <h3>6 oy</h3>
+                <p>Oqlash davri. Kredit + Sug'urta xizmatlari</p>
+                <div class="sc-tags"><span>Kredit</span><span>Sug'urta</span><span>Oqlash</span></div>
+                <div class="sc-glow"></div>
+            </div>
+            <div class="strategy-card">
+                <div class="sc-num">04</div>
+                <div class="sc-icon">💎</div>
+                <h3>$8K foyda</h3>
+                <p>6-oyda $8K, 12-oyda $15K maqsad</p>
+                <div class="sc-tags"><span>$8K</span><span>$15K</span><span>Maqsad</span></div>
+                <div class="sc-glow"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FINANCE ===== -->
+    <section class="finance-section" id="finance">
+        <div class="section-header">
+            <span class="section-tag">💰 MOLIYAVIY</span>
+            <h2>6 oylik <span class="gradient-text">prognoz</span></h2>
+        </div>
+        <div class="finance-grid">
+            <div class="finance-table-wrap">
+                <table>
+                    <thead>
+                        <tr><th>Oy</th><th>Sotuv</th><th>Daromad</th><th>Xarajat</th><th>Foyda</th><th>Holat</th></tr>
+                    </thead>
+                    <tbody id="financeTable">
+                        <tr><td>1</td><td>2</td><td>$1,500</td><td>$4,300</td><td class="loss">-$2,800</td><td><span class="status danger">Investitsiya</span></td></tr>
+                        <tr><td>2</td><td>3</td><td>$2,200</td><td>$4,300</td><td class="loss">-$2,100</td><td><span class="status danger">Investitsiya</span></td></tr>
+                        <tr><td>3</td><td>4</td><td>$3,100</td><td>$4,300</td><td class="loss">-$1,200</td><td><span class="status warning">Turg'unlik</span></td></tr>
+                        <tr><td>4</td><td>6</td><td>$4,500</td><td>$4,500</td><td>$0</td><td><span class="status info">Zero</span></td></tr>
+                        <tr><td>5</td><td>8</td><td>$6,000</td><td>$4,500</td><td class="profit">+$1,500</td><td><span class="status success">O'sish</span></td></tr>
+                        <tr><td>6</td><td>10</td><td>$7,500</td><td>$4,800</td><td class="profit">+$2,700</td><td><span class="status success">O'sish</span></td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="finance-sidebar">
+                <div class="finance-card">
+                    <h4>📊 Jami</h4>
+                    <div class="f-stat"><span>Daromad</span><span class="fv" id="totalRev">$24,800</span></div>
+                    <div class="f-stat"><span>Xarajat</span><span class="fv" id="totalCost">$26,700</span></div>
+                    <div class="f-stat highlight"><span>Foyda</span><span class="fv" id="totalProfit">-$1,900</span></div>
+                    <div class="ring-wrap">
+                        <svg viewBox="0 0 120 120">
+                            <circle cx="60" cy="60" r="50" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="8"/>
+                            <circle cx="60" cy="60" r="50" fill="none" stroke="url(#ringGrad)" stroke-width="8"
+                                    stroke-dasharray="314.16" stroke-dashoffset="147" stroke-linecap="round"
+                                    transform="rotate(-90 60 60)" id="ringCircle"/>
+                        </svg>
+                        <div class="ring-label"><span id="ringPercent">53%</span><small>Maqsad</small></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== GOALS ===== -->
+    <section class="goals-section" id="goals">
+        <div class="section-header">
+            <span class="section-tag">🎯 MAQSADLAR</span>
+            <h2>12 oylik <span class="gradient-text">rejalar</span></h2>
+        </div>
+        <div class="timeline">
+            <div class="tl-item">
+                <div class="tl-dot"></div>
+                <div class="tl-content">
+                    <h4>1-3 oylar — Boshlang'ich</h4>
+                    <p>4 ta mashina, SMM, brend tanitish. $500 marja.</p>
+                    <span class="tl-tag">📈 O'sish</span>
+                </div>
+            </div>
+            <div class="tl-item">
+                <div class="tl-dot"></div>
+                <div class="tl-content">
+                    <h4>4-6 oylar — Tezlashuv</h4>
+                    <p>8-10 ta mashina, kredit, sug'urta, diagnostika.</p>
+                    <span class="tl-tag">🚀 Tez o'sish</span>
+                </div>
+            </div>
+            <div class="tl-item">
+                <div class="tl-dot"></div>
+                <div class="tl-content">
+                    <h4>7-9 oylar — Kengayish</h4>
+                    <p>20 ta mashina, yangi xodimlar, ofis kengayishi.</p>
+                    <span class="tl-tag">💪 Kengayish</span>
+                </div>
+            </div>
+            <div class="tl-item">
+                <div class="tl-dot"></div>
+                <div class="tl-content">
+                    <h4>10-12 oylar — Liderlik</h4>
+                    <p>30 ta mashina, $15,000 foyda. Bozor yetakchisi.</p>
+                    <span class="tl-tag">🏆 Liderlik</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== TESTIMONIALS ===== -->
+    <section class="testimonials">
+        <div class="section-header">
+            <span class="section-tag">💬 EKSPERTLAR</span>
+            <h2>Mutaxassislar <span class="gradient-text">fikri</span></h2>
+        </div>
+        <div class="test-grid">
+            <div class="test-card">
+                <div class="test-avatar">👨‍💼</div>
+                <p>"1-4-6-8 strategiyasi — avto-bozorda eng samarali yondashuv."</p>
+                <strong>Jamshid Karimov</strong>
+                <span>Avto-ekspert, 15 yil</span>
+            </div>
+            <div class="test-card">
+                <div class="test-avatar">👩‍💼</div>
+                <p>"Onlayn + ofis formati sotuvlarni 2 barobar oshiradi."</p>
+                <strong>Dilnoza Rahimova</strong>
+                <span>Digital marketing</span>
+            </div>
+             <div class="test-card">
+                <div class="test-avatar">👩‍💼</div>
+                <p>"Onlayn + ofis formati sotuvlarni 2 barobar oshiradi."</p>
+                <strong>Ruxshona Anvarova</strong>
+                <span>Digital marketing</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CTA ===== -->
+    <section class="cta">
+        <div class="cta-content">
+            <h2>Loyihangizni <span class="gradient-text">boshlashga</span> tayyormisiz?</h2>
+            <p>1-4-6-8 strategiyasi bilan muvaffaqiyat sari!</p>
+            <button class="btn-cta" onclick="showCars()">🚀 Boshlash</button>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-brand">🚗 AvtoBozor24</div>
+            <div class="footer-links">
+                <a href="#home">Bosh</a>
+                <a href="#strategy">Strategiya</a>
+                <a href="#finance">Moliyaviy</a>
+                <a href="#cars">Mashinalar</a>
+                <a href="#goals">Maqsad</a>
+            </div>
+            <div class="footer-copy">© 2026 | 1-4-6-8 loyihasi</div>
+        </div>
+    </footer>
+
+    <svg style="display:none;">
+        <defs>
+            <linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#f1c40f" />
+                <stop offset="100%" stop-color="#00d4ff" />
+            </linearGradient>
+        </defs>
+    </svg>
+
+    <script src="script.js"></script>
+</body>
+</html>
